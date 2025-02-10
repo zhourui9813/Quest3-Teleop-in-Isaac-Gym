@@ -1,0 +1,795 @@
+<?xml version="1.0" ?>
+<robot name="panda" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <!-- MuJoCo 相关配置 -->
+  <mujoco>
+    <compiler meshdir="../meshes" discardvisual="false" />
+  </mujoco>
+
+  <!-- Link 0 -->
+  <link name="panda_link0">
+    <visual>
+      <!-- 添加视觉变换 -->
+      <origin xyz="0 0 0" rpy="1.5708 0 3.1416"/>
+      <geometry>
+        <mesh filename="package://franka_description/meshes/visual/link0.dae"/>
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="package://franka_description/meshes/collision/link0.obj"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <!-- Link 1 -->
+  <link name="panda_link1">
+    <visual>
+      <origin xyz="0 0 0" rpy="1.5708 0 3.1416"/>
+      <geometry>
+        <mesh filename="package://franka_description/meshes/visual/link1.dae"/>
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="package://franka_description/meshes/collision/link1.obj"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <!-- Joint 1 -->
+  <joint name="panda_joint1" type="revolute">
+    <safety_controller k_position="100.0" k_velocity="40.0" soft_lower_limit="-2.8973" soft_upper_limit="2.8973"/>
+    <origin rpy="0 0 0" xyz="0 0 0.333"/>
+    <parent link="panda_link0"/>
+    <child link="panda_link1"/>
+    <axis xyz="0 0 1"/>
+    <dynamics damping="10.0"/>
+    <limit effort="87" lower="-2.8973" upper="2.8973" velocity="2.1750"/>
+  </joint>
+
+  <!-- Link 2 -->
+  <link name="panda_link2">
+    <visual>
+      <origin xyz="0 0 0" rpy="1.5708 0 3.1416"/>
+      <geometry>
+        <mesh filename="package://franka_description/meshes/visual/link2.dae"/>
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="package://franka_description/meshes/collision/link2.obj"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <!-- Joint 2 -->
+  <joint name="panda_joint2" type="revolute">
+    <safety_controller k_position="100.0" k_velocity="40.0" soft_lower_limit="-1.7628" soft_upper_limit="1.7628"/>
+    <origin rpy="-1.57079632679 0 0" xyz="0 0 0"/>
+    <parent link="panda_link1"/>
+    <child link="panda_link2"/>
+    <axis xyz="0 0 1"/>
+    <dynamics damping="10.0"/>
+    <limit effort="87" lower="-1.7628" upper="1.7628" velocity="2.1750"/>
+  </joint>
+
+  <!-- Link 3 -->
+  <link name="panda_link3">
+    <visual>
+      <origin xyz="0 0 0" rpy="1.5708 0 3.1416"/>
+      <geometry>
+        <mesh filename="package://franka_description/meshes/visual/link3.dae"/>
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="package://franka_description/meshes/collision/link3.obj"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <!-- Joint 3 -->
+  <joint name="panda_joint3" type="revolute">
+    <safety_controller k_position="100.0" k_velocity="40.0" soft_lower_limit="-2.8973" soft_upper_limit="2.8973"/>
+    <origin rpy="1.57079632679 0 0" xyz="0 -0.316 0"/>
+    <parent link="panda_link2"/>
+    <child link="panda_link3"/>
+    <axis xyz="0 0 1"/>
+    <dynamics damping="10.0"/>
+    <limit effort="87" lower="-2.8973" upper="2.8973" velocity="2.1750"/>
+  </joint>
+
+  <!-- Link 4 -->
+  <link name="panda_link4">
+    <visual>
+      <origin xyz="0 0 0" rpy="1.5708 0 3.1416"/>
+      <geometry>
+        <mesh filename="package://franka_description/meshes/visual/link4.dae"/>
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="package://franka_description/meshes/collision/link4.obj"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <!-- Joint 4 -->
+  <joint name="panda_joint4" type="revolute">
+    <safety_controller k_position="100.0" k_velocity="40.0" soft_lower_limit="-3.0718" soft_upper_limit="-0.0698"/>
+    <origin rpy="1.57079632679 0 0" xyz="0.0825 0 0"/>
+    <parent link="panda_link3"/>
+    <child link="panda_link4"/>
+    <axis xyz="0 0 1"/>
+    <dynamics damping="10.0"/>
+    <limit effort="87" lower="-3.0718" upper="-0.0698" velocity="2.1750"/>
+  </joint>
+
+  <!-- Link 5 -->
+  <link name="panda_link5">
+    <visual>
+      <origin xyz="0 0 0" rpy="1.5708 0 3.1416"/>
+      <geometry>
+        <mesh filename="package://franka_description/meshes/visual/link5.dae"/>
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="package://franka_description/meshes/collision/link5.obj"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <!-- Joint 5 -->
+  <joint name="panda_joint5" type="revolute">
+    <safety_controller k_position="100.0" k_velocity="40.0" soft_lower_limit="-2.8973" soft_upper_limit="2.8973"/>
+    <origin rpy="-1.57079632679 0 0" xyz="-0.0825 0.384 0"/>
+    <parent link="panda_link4"/>
+    <child link="panda_link5"/>
+    <axis xyz="0 0 1"/>
+    <dynamics damping="10.0"/>
+    <limit effort="12" lower="-2.8973" upper="2.8973" velocity="2.6100"/>
+  </joint>
+
+  <!-- Link 6 -->
+  <link name="panda_link6">
+    <visual>
+      <origin xyz="0 0 0" rpy="1.5708 0 3.1416"/>
+      <geometry>
+        <mesh filename="package://franka_description/meshes/visual/link6.dae"/>
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="package://franka_description/meshes/collision/link6.obj"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <!-- Joint 6 -->
+  <joint name="panda_joint6" type="revolute">
+    <safety_controller k_position="100.0" k_velocity="40.0" soft_lower_limit="-0.0175" soft_upper_limit="3.7525"/>
+    <origin rpy="1.57079632679 0 0" xyz="0 0 0"/>
+    <parent link="panda_link5"/>
+    <child link="panda_link6"/>
+    <axis xyz="0 0 1"/>
+    <dynamics damping="10.0"/>
+    <limit effort="12" lower="-0.0175" upper="3.7525" velocity="2.6100"/>
+  </joint>
+
+  <!-- Link 7 -->
+  <link name="panda_link7">
+    <visual>
+      <origin xyz="0 0 0" rpy="1.5708 0 3.1416"/>
+      <geometry>
+        <mesh filename="package://franka_description/meshes/visual/link7.dae"/>
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="package://franka_description/meshes/collision/link7.obj"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <!-- Joint 7 -->
+  <joint name="panda_joint7" type="revolute">
+    <safety_controller k_position="100.0" k_velocity="40.0" soft_lower_limit="-2.8973" soft_upper_limit="2.8973"/>
+    <origin rpy="1.57079632679 0 0" xyz="0.088 0 0"/>
+    <parent link="panda_link6"/>
+    <child link="panda_link7"/>
+    <axis xyz="0 0 1"/>
+    <dynamics damping="10.0"/>
+    <limit effort="12" lower="-2.8973" upper="2.8973" velocity="2.6100"/>
+  </joint>
+
+  <!-- Joint panda_hand_joint -->
+  <joint name="panda_hand_joint" type="fixed">
+    <parent link="panda_link7"/>
+    <child link="panda_hand"/>
+    <!-- 此处采用原始设置（无需翻转），因为后续我们调整了视觉 -->
+    <origin rpy="0 0 -0.785398163397" xyz="0 0 0.107"/>
+  </joint>
+
+  <!-- Link panda_hand -->
+  <link name="panda_hand">
+    <visual>
+      <origin xyz="0 0 0" rpy="1.5708 0 3.1416"/>
+      <geometry>
+        <mesh filename="package://franka_description/meshes/visual/hand.dae"/>
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="package://franka_description/meshes/collision/hand.obj"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <!-- Link panda_leftfinger -->
+  <link name="panda_leftfinger">
+    <visual>
+      <origin xyz="0 0 0" rpy="1.5708 0 3.1416"/>
+      <geometry>
+        <mesh filename="package://franka_description/meshes/visual/finger.dae"/>
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="package://franka_description/meshes/collision/finger.obj"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <!-- Link panda_rightfinger -->
+  <link name="panda_rightfinger">
+    <visual>
+      <!-- 原 URDF 中已有 rpy 翻转（3.14159265359），我们这里覆盖为同样的转换 -->
+      <origin xyz="0 0 0" rpy="1.5708 0 3.1416"/>
+      <geometry>
+        <mesh filename="package://franka_description/meshes/visual/finger.dae"/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 3.14159265359"/>
+      <geometry>
+        <mesh filename="package://franka_description/meshes/collision/finger.obj"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <!-- Joint panda_finger_joint1 -->
+  <joint name="panda_finger_joint1" type="prismatic">
+    <parent link="panda_hand"/>
+    <child link="panda_leftfinger"/>
+    <origin rpy="0 0 0" xyz="0 0 0.0584"/>
+    <axis xyz="0 1 0"/>
+    <dynamics damping="10.0"/>
+    <limit effort="20" lower="0.0" upper="0.04" velocity="0.2"/>
+  </joint>
+
+  <!-- Joint panda_finger_joint2 -->
+  <joint name="panda_finger_joint2" type="prismatic">
+    <parent link="panda_hand"/>
+    <child link="panda_rightfinger"/>
+    <origin rpy="0 0 0" xyz="0 0 0.0584"/>
+    <axis xyz="0 -1 0"/>
+    <dynamics damping="10.0"/>
+    <limit effort="20" lower="0.0" upper="0.04" velocity="0.2"/>
+    <mimic joint="panda_finger_joint1"/>
+  </joint>
+
+  <!-- 以下为灵巧手（L_开头的部分），同样在所有视觉元素中添加转换 -->
+
+  <!-- Link L_hand_base_link -->
+  <link name="L_hand_base_link">
+    <inertial>
+      <origin xyz="-0.002551 -0.066047 -0.0019357" rpy="0 0 0" />
+      <mass value="0.14143" />
+      <inertia ixx="0.0001234" ixy="2.1995E-06" ixz="-1.7694E-06"
+               iyy="8.3835E-05" iyz="1.5968E-06" izz="7.7231E-05" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="1.5708 0 3.1416"/>
+      <geometry>
+        <mesh filename="./meshes/L_hand_base_link.STL"/>
+      </geometry>
+      <material name="">
+        <color rgba="0.1 0.1 0.1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="./meshes/L_hand_base_link.STL"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <!-- Link L_thumb_proximal_base -->
+  <link name="L_thumb_proximal_base">
+    <inertial>
+      <origin xyz="0.0048817 0.00038782 -0.00722" rpy="0 0 0"/>
+      <mass value="0.0018869" />
+      <inertia ixx="5.5158E-08" ixy="-1.1803E-08" ixz="-4.6743E-09"
+               iyy="8.2164E-08" iyz="-1.3521E-09" izz="6.7434E-08" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="1.5708 0 3.1416"/>
+      <geometry>
+        <mesh filename="./meshes/Link11_L.STL"/>
+      </geometry>
+      <material name="">
+        <color rgba="0.1 0.1 0.1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="./meshes/Link11_L.STL"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <!-- Joint L_thumb_proximal_yaw_joint -->
+  <joint name="L_thumb_proximal_yaw_joint" type="revolute">
+    <origin xyz="-0.01696 -0.0691 0.02045" rpy="1.5708 -1.5708 0"/>
+    <parent link="L_hand_base_link"/>
+    <child link="L_thumb_proximal_base"/>
+    <axis xyz="0 0 1"/>
+    <limit lower="-0.1" upper="1.3" effort="1" velocity="0.5"/>
+  </joint>
+
+  <!-- Link L_thumb_proximal -->
+  <link name="L_thumb_proximal">
+    <inertial>
+      <origin xyz="0.021936 -0.01279 -0.0080386" rpy="0 0 0"/>
+      <mass value="0.0066101" />
+      <inertia ixx="1.5693E-06" ixy="7.8339E-07" ixz="8.5959E-10"
+               iyy="1.7356E-06" iyz="1.0378E-09" izz="2.787E-06"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="1.5708 0 3.1416"/>
+      <geometry>
+        <mesh filename="./meshes/Link12_L.STL"/>
+      </geometry>
+      <material name="">
+        <color rgba="0.1 0.1 0.1 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="./meshes/Link12_L.STL"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <!-- Joint L_thumb_proximal_pitch_joint -->
+  <joint name="L_thumb_proximal_pitch_joint" type="revolute">
+    <origin xyz="0.0099867 0.0098242 -0.0089" rpy="-1.5708 0 0.16939"/>
+    <parent link="L_thumb_proximal_base"/>
+    <child link="L_thumb_proximal"/>
+    <axis xyz="0 0 -1"/>
+    <limit lower="0.0" upper="0.5" effort="1" velocity="0.5"/>
+  </joint>
+
+  <!-- Link L_thumb_intermediate -->
+  <link name="L_thumb_intermediate">
+    <inertial>
+      <origin xyz="0.0095531 0.0016282 -0.0072002" rpy="0 0 0"/>
+      <mass value="0.0037844"/>
+      <inertia ixx="3.6981E-07" ixy="9.8603E-08" ixz="-2.8173E-12"
+               iyy="3.2395E-07" iyz="-2.8028E-12" izz="4.6532E-07"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="1.5708 0 3.1416"/>
+      <geometry>
+        <mesh filename="./meshes/Link13_L.STL"/>
+      </geometry>
+      <material name="">
+        <color rgba="0.1 0.1 0.1 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="./meshes/Link13_L.STL"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <!-- Joint L_thumb_intermediate_joint -->
+  <joint name="L_thumb_intermediate_joint" type="revolute">
+    <origin xyz="0.04407 -0.034553 -0.0008" rpy="0 0 0"/>
+    <parent link="L_thumb_proximal"/>
+    <child link="L_thumb_intermediate"/>
+    <axis xyz="0 0 -1"/>
+    <limit lower="0" upper="0.8" effort="1" velocity="0.5"/>
+    <mimic joint="L_thumb_proximal_pitch_joint" multiplier="1.6" offset="0"/>
+  </joint>
+
+  <!-- Link L_thumb_distal -->
+  <link name="L_thumb_distal">
+    <inertial>
+      <origin xyz="0.0092888 -0.004953 -0.0060033" rpy="0 0 0"/>
+      <mass value="0.003344"/>
+      <inertia ixx="1.3632E-07" ixy="5.6787E-08" ixz="-9.1939E-11"
+               iyy="1.4052E-07" iyz="1.2145E-10" izz="2.0026E-07"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="1.5708 0 3.1416"/>
+      <geometry>
+        <mesh filename="./meshes/Link14_L.STL"/>
+      </geometry>
+      <material name="">
+        <color rgba="0.1 0.1 0.1 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="./meshes/Link14_L.STL"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <!-- Joint L_thumb_distal_joint -->
+  <joint name="L_thumb_distal_joint" type="revolute">
+    <origin xyz="0.020248 -0.010156 -0.0012" rpy="0 0 0"/>
+    <parent link="L_thumb_intermediate"/>
+    <child link="L_thumb_distal"/>
+    <axis xyz="0 0 -1"/>
+    <limit lower="0" upper="1.2" effort="1" velocity="0.5"/>
+    <mimic joint="L_thumb_proximal_pitch_joint" multiplier="2.4" offset="0"/>
+  </joint>
+
+  <!-- Link L_index_proximal -->
+  <link name="L_index_proximal">
+    <inertial>
+      <origin xyz="0.0012971 -0.011934 -0.0059998" rpy="0 0 0"/>
+      <mass value="0.0042405"/>
+      <inertia ixx="6.6215E-07" ixy="1.8442E-08" ixz="1.3746E-12"
+               iyy="2.1167E-07" iyz="-1.4773E-11" izz="6.9402E-07"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="1.5708 0 3.1416"/>
+      <geometry>
+        <mesh filename="./meshes/Link15_L.STL"/>
+      </geometry>
+      <material name="">
+        <color rgba="0.1 0.1 0.1 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="./meshes/Link15_L.STL"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <!-- Link L_index_intermediate -->
+  <link name="L_index_intermediate">
+    <inertial>
+      <origin xyz="0.0021753 -0.019567 -0.005" rpy="0 0 0"/>
+      <mass value="0.0045682"/>
+      <inertia ixx="7.6284E-07" ixy="-8.063E-08" ixz="3.6797E-13"
+               iyy="9.4308E-08" iyz="1.5743E-13" izz="7.8176E-07"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="1.5708 0 3.1416"/>
+      <geometry>
+        <mesh filename="./meshes/Link16_L.STL"/>
+      </geometry>
+      <material name="">
+        <color rgba="0.1 0.1 0.1 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="./meshes/Link16_L.STL"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <!-- Joint L_index_intermediate_joint -->
+  <joint name="L_index_intermediate_joint" type="revolute">
+    <origin xyz="-0.0024229 -0.032041 -0.001" rpy="0 0 0"/>
+    <parent link="L_index_proximal"/>
+    <child link="L_index_intermediate"/>
+    <axis xyz="0 0 -1"/>
+    <limit lower="0" upper="1.7" effort="1" velocity="0.5"/>
+    <mimic joint="L_index_proximal_joint" multiplier="1" offset="0"/>
+  </joint>
+
+  <!-- Link L_index_tip -->
+  <link name="L_index_tip">
+    <visual>
+      <origin xyz="0 0 0" rpy="1.5708 0 3.1416"/>
+      <geometry>
+        <sphere radius="0.005"/>
+      </geometry>
+      <material name="green">
+        <color rgba="0 1 0 1"/>
+      </material>
+    </visual>
+  </link>
+
+  <!-- Joint L_index_tip_joint -->
+  <joint name="L_index_tip_joint" type="fixed">
+    <parent link="L_index_intermediate"/>
+    <child link="L_index_tip"/>
+    <origin rpy="0 0 0" xyz="-0.005 -0.04 -0.004"/>
+  </joint>
+
+  <!-- Link L_middle_proximal -->
+  <link name="L_middle_proximal">
+    <inertial>
+      <origin xyz="0.0012971 -0.011934 -0.0059999" rpy="0 0 0"/>
+      <mass value="0.0042405"/>
+      <inertia ixx="6.6215E-07" ixy="1.8442E-08" ixz="1.2299E-12"
+               iyy="2.1167E-07" iyz="-1.4484E-11" izz="6.9402E-07"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="1.5708 0 3.1416"/>
+      <geometry>
+        <mesh filename="./meshes/Link17_L.STL"/>
+      </geometry>
+      <material name="">
+        <color rgba="0.1 0.1 0.1 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="./meshes/Link17_L.STL"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <!-- Joint L_middle_proximal_joint -->
+  <joint name="L_middle_proximal_joint" type="revolute">
+    <origin xyz="0.00028533 -0.1371 0.01295" rpy="0 0 0"/>
+    <parent link="L_hand_base_link"/>
+    <child link="L_middle_proximal"/>
+    <axis xyz="0 0 -1"/>
+    <limit lower="0" upper="1.7" effort="1" velocity="0.5"/>
+  </joint>
+
+  <!-- Link L_middle_intermediate -->
+  <link name="L_middle_intermediate">
+    <inertial>
+      <origin xyz="0.001921 -0.020796 -0.0049999" rpy="0 0 0"/>
+      <mass value="0.0050397"/>
+      <inertia ixx="9.5823E-07" ixy="-1.1425E-07" ixz="-2.4186E-12"
+               iyy="1.0646E-07" iyz="3.6974E-12" izz="9.8385E-07"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="1.5708 0 3.1416"/>
+      <geometry>
+        <mesh filename="./meshes/Link18_L.STL"/>
+      </geometry>
+      <material name="">
+        <color rgba="0.1 0.1 0.1 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="./meshes/Link18_L.STL"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <!-- Joint L_middle_intermediate_joint -->
+  <joint name="L_middle_intermediate_joint" type="revolute">
+    <origin xyz="-0.0024229 -0.032041 -0.001" rpy="0 0 0"/>
+    <parent link="L_middle_proximal"/>
+    <child link="L_middle_intermediate"/>
+    <axis xyz="0 0 -1"/>
+    <limit lower="0" upper="1.7" effort="1" velocity="0.5"/>
+    <mimic joint="L_middle_proximal_joint" multiplier="1" offset="0"/>
+  </joint>
+
+  <!-- Link L_middle_tip -->
+  <link name="L_middle_tip">
+    <visual>
+      <origin xyz="0 0 0" rpy="1.5708 0 3.1416"/>
+      <geometry>
+        <sphere radius="0.005"/>
+      </geometry>
+      <material name="green">
+        <color rgba="0 1 0 1"/>
+      </material>
+    </visual>
+  </link>
+
+  <!-- Joint L_middle_tip_joint -->
+  <joint name="L_middle_tip_joint" type="fixed">
+    <parent link="L_middle_intermediate"/>
+    <child link="L_middle_tip"/>
+    <origin rpy="0 0 0" xyz="-0.005 -0.045 -0.004"/>
+  </joint>
+
+  <!-- Link L_ring_proximal -->
+  <link name="L_ring_proximal">
+    <inertial>
+      <origin xyz="0.0012971 -0.011934 -0.0059999" rpy="0 0 0"/>
+      <mass value="0.0042405"/>
+      <inertia ixx="6.6215E-07" ixy="1.8442E-08" ixz="9.6052E-13"
+               iyy="2.1167E-07" iyz="-1.4124E-11" izz="6.9402E-07"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="1.5708 0 3.1416"/>
+      <geometry>
+        <mesh filename="./meshes/Link19_L.STL"/>
+      </geometry>
+      <material name="">
+        <color rgba="0.1 0.1 0.1 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="./meshes/Link19_L.STL"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <!-- Joint L_ring_proximal_joint -->
+  <joint name="L_ring_proximal_joint" type="revolute">
+    <origin xyz="0.00028533 -0.13691 -0.0062872" rpy="0.05236 0 0"/>
+    <parent link="L_hand_base_link"/>
+    <child link="L_ring_proximal"/>
+    <axis xyz="0 0 -1"/>
+    <limit lower="0" upper="1.7" effort="1" velocity="0.5"/>
+  </joint>
+
+  <!-- Link L_ring_intermediate -->
+  <link name="L_ring_intermediate">
+    <inertial>
+      <origin xyz="0.0021753 -0.019567 -0.005" rpy="0 0 0"/>
+      <mass value="0.0045682"/>
+      <inertia ixx="7.6285E-07" ixy="-8.0631E-08" ixz="3.3472E-14"
+               iyy="9.4308E-08" iyz="-4.4773E-13" izz="7.8176E-07"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="1.5708 0 3.1416"/>
+      <geometry>
+        <mesh filename="./meshes/Link20_L.STL"/>
+      </geometry>
+      <material name="">
+        <color rgba="0.1 0.1 0.1 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="./meshes/Link20_L.STL"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <!-- Joint L_ring_intermediate_joint -->
+  <joint name="L_ring_intermediate_joint" type="revolute">
+    <origin xyz="-0.0024229 -0.032041 -0.001" rpy="0 0 0"/>
+    <parent link="L_ring_proximal"/>
+    <child link="L_ring_intermediate"/>
+    <axis xyz="0 0 -1"/>
+    <limit lower="0" upper="1.7" effort="1" velocity="0.5"/>
+    <mimic joint="L_ring_proximal_joint" multiplier="1" offset="0"/>
+  </joint>
+
+  <!-- Link L_ring_tip -->
+  <link name="L_ring_tip">
+    <visual>
+      <origin xyz="0 0 0" rpy="1.5708 0 3.1416"/>
+      <geometry>
+        <sphere radius="0.005"/>
+      </geometry>
+      <material name="green">
+        <color rgba="0 1 0 1"/>
+      </material>
+    </visual>
+  </link>
+
+  <!-- Joint L_ring_tip_joint -->
+  <joint name="L_ring_tip_joint" type="fixed">
+    <parent link="L_ring_intermediate"/>
+    <child link="L_ring_tip"/>
+    <origin rpy="0 0 0" xyz="-0.002 -0.04 -0.004"/>
+  </joint>
+
+  <!-- Link L_pinky_proximal -->
+  <link name="L_pinky_proximal">
+    <inertial>
+      <origin xyz="0.0012971 -0.011934 -0.0059999" rpy="0 0 0"/>
+      <mass value="0.0042405"/>
+      <inertia ixx="6.6215E-07" ixy="1.8442E-08" ixz="1.0279E-12"
+               iyy="2.1167E-07" iyz="-1.4277E-11" izz="6.9402E-07"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="1.5708 0 3.1416"/>
+      <geometry>
+        <mesh filename="./meshes/Link21_L.STL"/>
+      </geometry>
+      <material name="">
+        <color rgba="0.1 0.1 0.1 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="./meshes/Link21_L.STL"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <!-- Joint L_pinky_proximal_joint -->
+  <joint name="L_pinky_proximal_joint" type="revolute">
+    <origin xyz="0.00028533 -0.13571 -0.025488" rpy="0.10472 0 0"/>
+    <parent link="L_hand_base_link"/>
+    <child link="L_pinky_proximal"/>
+    <axis xyz="0 0 -1"/>
+    <limit lower="0" upper="1.7" effort="1" velocity="0.5"/>
+  </joint>
+
+  <!-- Link L_pinky_intermediate -->
+  <link name="L_pinky_intermediate">
+    <inertial>
+      <origin xyz="0.0024788 -0.016208 -0.0050001" rpy="0 0 0"/>
+      <mass value="0.0036036"/>
+      <inertia ixx="4.3923E-07" ixy="-4.1355E-08" ixz="1.2263E-12"
+               iyy="7.0315E-08" iyz="3.1311E-12" izz="4.4881E-07"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="1.5708 0 3.1416"/>
+      <geometry>
+        <mesh filename="./meshes/Link22_L.STL"/>
+      </geometry>
+      <material name="">
+        <color rgba="0.1 0.1 0.1 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="./meshes/Link22_L.STL"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <!-- Joint L_pinky_intermediate_joint -->
+  <joint name="L_pinky_intermediate_joint" type="revolute">
+    <origin xyz="-0.0024229 -0.032041 -0.001" rpy="0 0 0"/>
+    <parent link="L_pinky_proximal"/>
+    <child link="L_pinky_intermediate"/>
+    <axis xyz="0 0 -1"/>
+    <limit lower="0" upper="1.7" effort="1" velocity="0.5"/>
+    <mimic joint="L_pinky_proximal_joint" multiplier="1" offset="0"/>
+  </joint>
+
+  <!-- Link L_pinky_tip -->
+  <link name="L_pinky_tip">
+    <visual>
+      <origin xyz="0 0 0" rpy="1.5708 0 3.1416"/>
+      <geometry>
+        <sphere radius="0.005"/>
+      </geometry>
+      <material name="green">
+        <color rgba="0 1 0 1"/>
+      </material>
+    </visual>
+  </link>
+
+  <!-- Joint L_pinky_tip_joint -->
+  <joint name="L_pinky_tip_joint" type="fixed">
+    <parent link="L_pinky_intermediate"/>
+    <child link="L_pinky_tip"/>
+    <origin rpy="0 0 0" xyz="-0.002 -0.032 -0.004"/>
+  </joint>
+
+</robot>
