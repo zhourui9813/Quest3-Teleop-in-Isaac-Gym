@@ -3,7 +3,7 @@
 ## Introduction
 After modifications on **OpenTelevision**, Quest 3 can be used for teleoperation of the Franka Panda robotic arm and Inspire Hand in **Isaac Gym**.
 
-![simulation in isaac gym](./img/franka_and_hand_in_isaac_gym.png)
+![simulation in isaac gym](./img/franka_hand_isaac_gym.png)
 
 ## Installation
 
