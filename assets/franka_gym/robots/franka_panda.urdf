@@ -13,7 +13,7 @@
     </visual>
     <collision>
       <geometry>
-        <mesh filename="package://franka_description/meshes/collision/link0.obj"/>
+        <mesh filename="package://franka_description/meshes/collision/link0.stl"/>
       </geometry>
     </collision>
   </link>
@@ -25,7 +25,7 @@
     </visual>
     <collision>
       <geometry>
-        <mesh filename="package://franka_description/meshes/collision/link1.obj"/>
+        <mesh filename="package://franka_description/meshes/collision/link1.stl"/>
       </geometry>
     </collision>
   </link>
@@ -46,7 +46,7 @@
     </visual>
     <collision>
       <geometry>
-        <mesh filename="package://franka_description/meshes/collision/link2.obj"/>
+        <mesh filename="package://franka_description/meshes/collision/link2.stl"/>
       </geometry>
     </collision>
   </link>
@@ -67,7 +67,7 @@
     </visual>
     <collision>
       <geometry>
-        <mesh filename="package://franka_description/meshes/collision/link3.obj"/>
+        <mesh filename="package://franka_description/meshes/collision/link3.stl"/>
       </geometry>
     </collision>
   </link>
@@ -88,7 +88,7 @@
     </visual>
     <collision>
       <geometry>
-        <mesh filename="package://franka_description/meshes/collision/link4.obj"/>
+        <mesh filename="package://franka_description/meshes/collision/link4.stl"/>
       </geometry>
     </collision>
   </link>
@@ -112,7 +112,7 @@
     </visual>
     <collision>
       <geometry>
-        <mesh filename="package://franka_description/meshes/collision/link5.obj"/>
+        <mesh filename="package://franka_description/meshes/collision/link5.stl"/>
       </geometry>
     </collision>
   </link>
@@ -133,7 +133,7 @@
     </visual>
     <collision>
       <geometry>
-        <mesh filename="package://franka_description/meshes/collision/link6.obj"/>
+        <mesh filename="package://franka_description/meshes/collision/link6.stl"/>
       </geometry>
     </collision>
   </link>
@@ -156,7 +156,7 @@
     </visual>
     <collision>
       <geometry>
-        <mesh filename="package://franka_description/meshes/collision/link7.obj"/>
+        <mesh filename="package://franka_description/meshes/collision/link7.stl"/>
       </geometry>
     </collision>
   </link>

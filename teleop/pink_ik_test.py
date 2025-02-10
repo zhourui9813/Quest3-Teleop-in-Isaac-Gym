@@ -24,14 +24,14 @@ if __name__ == "__main__":
         os.path.dirname(__file__),
         "..",
         "assets",
-        "franka_pinocchio",
+        "franka_gym",
         "robots",
         "franka_panda.urdf",
     )
 
     robot = pinocchio.RobotWrapper.BuildFromURDF(
         filename=urdf_path,
-        package_dirs=["."],
+        package_dirs=["/opt/ros/noetic/share/"],
         root_joint=None,
     )
     print(f"URDF description successfully loaded in {robot}")

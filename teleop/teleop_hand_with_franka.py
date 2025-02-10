@@ -53,14 +53,14 @@ pinocchio_urdf = os.path.join(
             os.path.dirname(__file__),
             "..",
             "assets",
-            "franka_pinocchio",
+            "franka_gym",
             "robots",
             "franka_panda.urdf",
         )
 
 franka_pin = pinocchio.RobotWrapper.BuildFromURDF(
         filename=pinocchio_urdf,
-        package_dirs=["."],
+        package_dirs=["/opt/ros/noetic/share/"],
         root_joint=None,
     )
 print(f"URDF description successfully loaded in {franka_pin}")
