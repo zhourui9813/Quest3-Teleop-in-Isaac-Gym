@@ -98,8 +98,8 @@
     <axis
       xyz="0 0 -1" />
     <limit
-      lower="-0.1"
-      upper="1.8"
+      lower="0"
+      upper="1.3090"
       effort="1"
       velocity="0.5" />
   </joint>
@@ -154,7 +154,7 @@
       xyz="0 0 1" />
     <limit
       lower="0.0"
-      upper="0.5"
+      upper="0.4712"
       effort="1"
       velocity="0.5" />
   </joint>
@@ -214,8 +214,8 @@
       velocity="0.5" />
     <mimic 
       joint="R_thumb_proximal_pitch_joint"
-      multiplier="1.6"
-      offset="0" />
+      multiplier="1.142"
+      offset="0.490" />
   </joint>
 
   <link name="R_thumb_distal">
@@ -273,8 +273,8 @@
       velocity="0.5" />
     <mimic 
       joint="R_thumb_proximal_pitch_joint"
-      multiplier="2.4"
-      offset="0" />
+      multiplier="0.864"
+      offset="0.907" />
   </joint>
 
   <link name="R_thumb_tip">
@@ -346,7 +346,7 @@
       xyz="0 0 1" />
     <limit
       lower="0"
-      upper="1.7"
+      upper="1.3090"
       effort="1"
       velocity="0.5" />
   </joint>
@@ -479,7 +479,7 @@
       xyz="0 0 1" />
     <limit
       lower="0"
-      upper="1.7"
+      upper="1.3090"
       effort="1"
       velocity="0.5" />
   </joint>
@@ -539,8 +539,8 @@
       velocity="0.5" />
     <mimic 
       joint="R_middle_proximal_joint"
-      multiplier="1"
-      offset="0" />
+      multiplier="1.117"
+      offset="-0.187" />
   </joint>
 
   <link name="R_middle_tip">
@@ -612,7 +612,7 @@
       xyz="0 0 1" />
     <limit
       lower="0"
-      upper="1.7"
+      upper="1.3090"
       effort="1"
       velocity="0.5" />
   </joint>
@@ -672,8 +672,8 @@
       velocity="0.5" />
     <mimic 
       joint="R_ring_proximal_joint"
-      multiplier="1"
-      offset="0" />
+      multiplier="1.117"
+      offset="-0.187" />
   </joint>
 
   <link name="R_ring_tip">
@@ -745,7 +745,7 @@
       xyz="0 0 1" />
     <limit
       lower="0"
-      upper="1.7"
+      upper="1.3090"
       effort="1"
       velocity="0.5" />
   </joint>
@@ -805,8 +805,8 @@
       velocity="0.5" />
     <mimic 
       joint="R_pinky_proximal_joint"
-      multiplier="1"
-      offset="0" />
+      multiplier="1.117"
+      offset="-0.187" />
   </joint>
 
   <link name="R_pinky_tip">

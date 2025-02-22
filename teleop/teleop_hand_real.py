@@ -48,7 +48,7 @@ from multiprocessing import Array, Process, shared_memory, Queue, Manager, Event
 from teleop_utils import *
 
 
-# from inspire_hand_utils.inspire_hand_agent import InspireHandAgent
+from inspire_hand_utils.inspire_hand_agent import InspireHandAgent
 
 class VuerTeleop:
     def __init__(self, config_file_path):
@@ -99,10 +99,10 @@ class Sim:
         self.gym = gymapi.acquire_gym()
 
 
-        # self.hand_agent = InspireHandAgent(port='/dev/ttyUSB0',
-        #                                 hand_id=1,
-        #                                 baudrate=115200
-        #                                 )
+        self.hand_agent = InspireHandAgent(port='/dev/ttyUSB0',
+                                        hand_id=1,
+                                        baudrate=115200
+                                        )
 
         # configure sim
         sim_params = gymapi.SimParams()
@@ -254,8 +254,8 @@ class Sim:
     def step(self, head_rmat, left_pose, right_pose, left_qpos, right_qpos):
         # left_pose, right_pose代表手根部的姿态, 为[x, y, z, qx, qy, qz, qw]形式
         # left_qpos, right_qpos代表手部所有关节的姿态
-        hand_pose = [right_qpos[4], right_pose[6], right_qpos[2], right_qpos[0], right_qpos[10], right_qpos[8]]
-        # self.hand_agent.set_joint_position(np.array(hand_pose))
+        hand_pose = [right_qpos[4], right_pose[6], right_qpos[2], right_qpos[0], right_qpos[9], right_qpos[8]]
+        self.hand_agent.set_joint_position(np.array(hand_pose))
 
         if self.print_freq:
             start = time.time()
