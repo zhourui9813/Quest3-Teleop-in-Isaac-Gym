@@ -179,8 +179,8 @@ class VuerTeleop:
                                     rotations.quaternion_from_matrix(left_wrist_mat[:3, :3])[[1, 2, 3, 0]]])
         right_pose = np.concatenate([right_wrist_mat[:3, 3] + np.array([-0.6, 0, 1.6]),
                                      rotations.quaternion_from_matrix(right_wrist_mat[:3, :3])[[1, 2, 3, 0]]])
-        left_qpos = self.left_retargeting.retarget(left_hand_mat[tip_indices])[[4, 5, 6, 7, 10, 11, 8, 9, 0, 1, 2, 3]]
-        right_qpos = self.right_retargeting.retarget(right_hand_mat[tip_indices])[[4, 5, 6, 7, 10, 11, 8, 9, 0, 1, 2, 3]]
+        left_qpos = self.left_retargeting.retarget(left_hand_mat[tip_indices])[[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]] # [[4, 5, 6, 7, 10, 11, 8, 9, 0, 1, 2, 3]]
+        right_qpos = self.right_retargeting.retarget(right_hand_mat[tip_indices])[[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]] # [[4, 5, 6, 7, 10, 11, 8, 9, 0, 1, 2, 3]]
 
         return head_rmat, left_pose, right_pose, left_qpos, right_qpos
 
@@ -381,8 +381,20 @@ class Sim:
         self.previous_right_pose = None
 
     def step(self, head_rmat, left_pose, right_pose, left_qpos, right_qpos):
+
+
+        # import pdb; pdb.set_trace()
         # left_pose, right_pose代表手根部的姿态, 为[x, y, z, qx, qy, qz, qw]形式
         # left_qpos, right_qpos代表手部所有关节的姿态
+        print(f"left hand qpos is { left_qpos}")
+        # print(left_qpos.shape)
+        # left_qpos = np.full(12, 0.)
+        # right_qpos = np.full(12, 0.)
+        # right_qpos[8] = 1.7
+
+        # left_qpos[9] = np.pi / 2        # left_qpos[0] = 0
+        # left_qpos[9] = 2
+
 
         if self.print_freq:
             start = time.time()
@@ -467,7 +479,19 @@ class Sim:
 
         right_states = np.zeros(self.dof, dtype=gymapi.DofState.dtype)
         right_states['pos'] = right_qpos
+        print(f"sstate={right_states}")
         self.gym.set_actor_dof_states(self.env, self.right_handle, right_states, gymapi.STATE_POS)
+
+        dof_states = self.gym.get_actor_dof_states(self.env, self.left_handle, gymapi.STATE_ALL)
+        print(f"the current left hand pose is {dof_states}")
+        print(f"number of dof_state is {dof_states.shape}")
+        # dof_states 是一个列表，长度为该 actor 的 DOF 数，每个元素类型为 gymapi.DofState
+        # gymapi.DofState 有 pos 和 vel 两个属性，分别对应关节位置（角度或位移）和关节速度
+
+        # for i, dof_state in enumerate(dof_states):
+        #     joint_angle = dof_state.pos  # 该关节的角度（旋转关节）或位移（滑动关节）
+        #     joint_velocity = dof_state.vel
+        #     print(f"DOF {i} angle: {joint_angle}, velocity: {joint_velocity}")
 
         # step the physics
         self.gym.simulate(self.sim)
@@ -509,7 +533,7 @@ class Sim:
 
 
 if __name__ == '__main__':
-    teleoperator = VuerTeleop('inspire_hand.yml')
+    teleoperator = VuerTeleop('inspire_hand_0_4_6.yml')
     simulator = Sim()
 
     try:
