@@ -3,6 +3,7 @@ import pinocchio
 from isaacgym import gymapi
 import numpy as np
 from scipy.spatial.transform import Rotation as R
+import matplotlib.pyplot as plt
 
 # 将 gymapi.Transform 转换为齐次变换矩阵
 def gympose2matrix(pose):
@@ -115,3 +116,89 @@ def vector_to_matrix(vec):
     T[:3, :3] = R_mat
     T[:3, 3] = translation
     return T
+
+def euler_to_matrix(euler):
+
+    rotation = R.from_euler('xyz', euler)
+    return rotation.as_matrix()
+
+
+def relative_pose_to_absolute(base_pose, relative_pose):
+    # 将机械臂base的位姿转换为变换矩阵
+    T_base = gympose2matrix(base_pose)
+
+    # 提取相对位姿的平移和欧拉角
+    rel_translation = np.array(relative_pose[:3])
+    rel_rpy = np.array(relative_pose[3:])
+
+    # 将欧拉角转换为四元数
+    rel_quat = R.from_euler('xyz', rel_rpy).as_quat()
+
+    # 构造相对位姿的变换矩阵
+    T_relative = np.eye(4)
+    T_relative[:3, :3] = R.from_quat(rel_quat).as_matrix()
+    T_relative[:3, 3] = rel_translation
+
+    # 计算绝对位姿的变换矩阵
+    T_absolute = np.dot(T_base, T_relative)
+
+    # 提取绝对位置的坐标和欧拉角
+    abs_translation = T_absolute[:3, 3]
+    abs_rot_mat = T_absolute[:3, :3]
+    abs_rpy = R.from_matrix(abs_rot_mat).as_euler('xyz')
+
+    return abs_translation.tolist() + abs_rpy.tolist()
+
+
+def plot_pose(transformation, ax):
+    """
+    绘制位姿
+    :param transformation: 位姿数组，前三个为位置，后三个为欧拉角（弧度）
+    :param ax: Matplotlib 3D坐标轴
+    """
+    # 提取位置和欧拉角
+    position = transformation[:3]
+    roll, pitch, yaw = transformation[3:]
+
+    # 使用 scipy.spatial.transform.Rotation 创建旋转矩阵
+    rotation = R.from_euler('xyz', [roll, pitch, yaw])
+    R_matrix = rotation.as_matrix()
+
+    # 基准坐标系原点
+    origin = np.array([0, 0, 0])
+
+    # 绘制基准坐标系
+    ax.quiver(origin[0], origin[1], origin[2], 1, 0, 0, color='r', length=1.0, arrow_length_ratio=0.1,
+              label='X-axis (ref)')
+    ax.quiver(origin[0], origin[1], origin[2], 0, 1, 0, color='g', length=1.0, arrow_length_ratio=0.1,
+              label='Y-axis (ref)')
+    ax.quiver(origin[0], origin[1], origin[2], 0, 0, 1, color='b', length=1.0, arrow_length_ratio=0.1,
+              label='Z-axis (ref)')
+
+    # 绘制位姿坐标系
+    ax.quiver(position[0], position[1], position[2], R_matrix[0, 0], R_matrix[1, 0], R_matrix[2, 0], color='r',
+              length=1.0, arrow_length_ratio=0.1, label='X-axis (pose)')
+    ax.quiver(position[0], position[1], position[2], R_matrix[0, 1], R_matrix[1, 1], R_matrix[2, 1], color='g',
+              length=1.0, arrow_length_ratio=0.1, label='Y-axis (pose)')
+    ax.quiver(position[0], position[1], position[2], R_matrix[0, 2], R_matrix[1, 2], R_matrix[2, 2], color='b',
+              length=1.0, arrow_length_ratio=0.1, label='Z-axis (pose)')
+
+    # 绘制位姿原点与基准坐标系原点的连线
+    ax.plot([origin[0], position[0]], [origin[1], position[1]], [origin[2], position[2]], 'k--',
+            label='Connection line')
+
+    # 设置坐标轴标签和标题
+    ax.set_xlabel('X')
+    ax.set_ylabel('Y')
+    ax.set_zlabel('Z')
+    ax.set_title('Pose Visualization')
+
+    # 设置坐标轴范围以放大显示
+    ax.set_xlim([-3, 3])
+    ax.set_ylim([-3, 3])
+    ax.set_zlim([-3, 3])
+
+    ax.legend()
+
+
+

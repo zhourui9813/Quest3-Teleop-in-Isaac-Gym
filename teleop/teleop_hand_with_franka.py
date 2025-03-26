@@ -172,6 +172,8 @@ class VuerTeleop:
 
     def step(self):
         head_mat, left_wrist_mat, right_wrist_mat, left_hand_mat, right_hand_mat = self.processor.process(self.tv)
+        # print(right_hand_mat)
+        # import pdb;pdb.set_trace()
 
         head_rmat = head_mat[:3, :3]
 
@@ -390,7 +392,9 @@ class Sim:
         # print(left_qpos.shape)
         # left_qpos = np.full(12, 0.)
         # right_qpos = np.full(12, 0.)
-        # right_qpos[8] = 1.7
+        right_qpos[4] = np.deg2rad(180-179.9245224)
+        right_qpos[5] = np.deg2rad((180-179.9245224))*1.117-0.187
+
 
         # left_qpos[9] = np.pi / 2        # left_qpos[0] = 0
         # left_qpos[9] = 2

@@ -65,7 +65,10 @@ class VuerTeleop:
         self.img_array = np.ndarray((self.img_shape[0], self.img_shape[1], 3), dtype=np.uint8, buffer=self.shm.buf)
         image_queue = Queue()
         toggle_streaming = Event()
-        self.tv = OpenTeleVision(self.resolution_cropped, self.shm.name, image_queue, toggle_streaming, cert_file=None, key_file=None,  ngrok=False)
+        # Quest
+        # self.tv = OpenTeleVision(self.resolution_cropped, self.shm.name, image_queue, toggle_streaming, cert_file=None, key_file=None,  ngrok=False)
+        # Vision Pro
+        self.tv = OpenTeleVision(self.resolution_cropped, self.shm.name, image_queue, toggle_streaming, cert_file="./cert/cert.pem", key_file="./cert/key.pem", ngrok=False)
         self.processor = VuerPreprocessor()
 
         RetargetingConfig.set_default_urdf_dir('../assets')
@@ -227,8 +230,10 @@ class Sim:
         self.gym.viewer_camera_look_at(self.viewer, None, cam_pos, cam_target)
 
         self.cam_lookat_offset = np.array([1, 0, 0])
-        self.left_cam_offset = np.array([0, 0.033, 0])
-        self.right_cam_offset = np.array([0, -0.033, 0])
+        self.left_cam_offset = np.array([0, 0, 0])
+        self.right_cam_offset = np.array([0, 0, 0])
+        # self.left_cam_offset = np.array([0, 0.0, 0])
+        # self.right_cam_offset = np.array([0, 0.0, 0])
         self.cam_pos = np.array([-0.6, 0, 1.6])
 
         # create left 1st preson viewer
@@ -254,14 +259,21 @@ class Sim:
     def step(self, head_rmat, left_pose, right_pose, left_qpos, right_qpos):
         # left_pose, right_pose代表手根部的姿态, 为[x, y, z, qx, qy, qz, qw]形式
         # left_qpos, right_qpos代表手部所有关节的姿态
-        hand_pose = [right_qpos[4], right_pose[6], right_qpos[2], right_qpos[0], right_qpos[10], right_qpos[8]]
+        # print(f"right_qpos is {right_qpos}")
+        hand_pose = [right_qpos[4], right_pose[6], right_qpos[2], right_qpos[0], right_qpos[9], right_qpos[8]]
+        # print(f"hand_pose is {hand_pose}")
+
         # self.hand_agent.set_joint_position(np.array(hand_pose))
 
         if self.print_freq:
             start = time.time()
 
+        print(f"left_pose is {left_pose}")
+        print(f"right_pose is {right_pose}")
+
         # 将Vuer中的手部root state传入方针中并转换为torch类型，方便后续使用set_actor_root_state_tensor进行操作
         self.left_root_states[0:7] = torch.tensor(left_pose, dtype=float)
+
         self.right_root_states[0:7] = torch.tensor(right_pose, dtype=float)
 
         # 修改双手的root state,让Gym知道“刚才对 root_states 这块内存的修改要生效了”，从而完成更新左右手在仿真场景中的实际位姿

@@ -2,13 +2,13 @@ aiohttp==3.9.5
 aiohttp_cors==0.7.0
 aiortc==1.8.0
 av==11.0.0
-dex_retargeting==0.1.1
+dex_retargeting==0.4.6
 dynamixel_sdk==3.7.31
 einops==0.8.0
 h5py==3.11.0
 ipython==8.12.3
 matplotlib==3.7.5
-numpy==1.23.0
+numpy
 opencv_contrib_python==4.10.0.82
 opencv_python
 packaging==24.1

@@ -8,7 +8,7 @@
   <link name="panda_link0">
     <visual>
       <geometry>
-        <mesh filename="package://franka_description/meshes/visual/link0.dae"/>
+        <mesh filename="../meshes/visual/link0.dae"/>
       </geometry>
     </visual>
     <collision>
@@ -20,7 +20,7 @@
   <link name="panda_link1">
     <visual>
       <geometry>
-        <mesh filename="package://franka_description/meshes/visual/link1.dae"/>
+        <mesh filename="../meshes/visual/link1.dae"/>
       </geometry>
     </visual>
     <collision>
@@ -41,7 +41,7 @@
   <link name="panda_link2">
     <visual>
       <geometry>
-        <mesh filename="package://franka_description/meshes/visual/link2.dae"/>
+        <mesh filename="../meshes/visual/link2.dae"/>
       </geometry>
     </visual>
     <collision>
@@ -62,7 +62,7 @@
   <link name="panda_link3">
     <visual>
       <geometry>
-        <mesh filename="package://franka_description/meshes/visual/link3.dae"/>
+        <mesh filename="../meshes/visual/link3.dae"/>
       </geometry>
     </visual>
     <collision>
@@ -83,7 +83,7 @@
   <link name="panda_link4">
     <visual>
       <geometry>
-        <mesh filename="package://franka_description/meshes/visual/link4.dae"/>
+        <mesh filename="../meshes/visual/link4.dae"/>
       </geometry>
     </visual>
     <collision>
@@ -107,7 +107,7 @@
   <link name="panda_link5">
     <visual>
       <geometry>
-        <mesh filename="package://franka_description/meshes/visual/link5.dae"/>
+        <mesh filename="../meshes/visual/link5.dae"/>
       </geometry>
     </visual>
     <collision>
@@ -128,7 +128,7 @@
   <link name="panda_link6">
     <visual>
       <geometry>
-        <mesh filename="package://franka_description/meshes/visual/link6.dae"/>
+        <mesh filename="../meshes/visual/link6.dae"/>
       </geometry>
     </visual>
     <collision>
@@ -151,7 +151,7 @@
   <link name="panda_link7">
     <visual>
       <geometry>
-        <mesh filename="package://franka_description/meshes/visual/link7.dae"/>
+        <mesh filename="../meshes/visual/link7.dae"/>
       </geometry>
     </visual>
     <collision>
