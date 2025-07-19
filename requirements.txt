@@ -20,10 +20,14 @@ scikit_learn==1.3.2
 scipy==1.10.1
 seaborn==0.13.2
 setuptools==69.5.1
-torch==2.3.0
-torchvision==0.18.0
+torch==2.4.1
+torchvision==0.19.1
 tqdm==4.66.4
 vuer==0.0.32rc7
 wandb==0.17.3
 pygame
+pin==3.3.1
 pin-pink==3.1.0
+yourdfpy
+zarr
+tensorboard
