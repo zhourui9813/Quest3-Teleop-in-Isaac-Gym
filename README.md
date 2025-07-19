@@ -186,6 +186,10 @@ For more control over the system, you have two options:
 
 **Option 1: Use the provided bash script (Recommended)**
 ```bash
+# Make the script executable
+chmod +x quick_install.sh
+
+# Run the teleop script
 ./run_teleop.sh
 ```
 The project includes a pre-configured `run_teleop.sh` script with optimized parameters. You can edit this script to customize the settings:
