@@ -55,6 +55,9 @@ chmod +x quick_install.sh
 
 # Run the installation script
 ./quick_install.sh
+
+# Activate conda environment
+conda activate teleop
 ```
 
 The script will automatically:
