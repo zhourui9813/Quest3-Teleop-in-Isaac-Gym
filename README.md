@@ -122,13 +122,14 @@ If you prefer to install manually or encounter issues with the quick install scr
 2. **Configure ADB Environment**
    
    Add ADB tools to your system PATH by modifying `~/.bashrc`:
+   
+   **Note:** Replace `PATH_TO_YOUR_ANDROID_SDK` with the actual installation directory of your Android SDK in following command .
+   
    ```bash
-   echo 'export PATH=$PATH:~/Android_SDK_Platform_Tools/platform-tools-latest-linux/platform-tools/' >> ~/.bashrc
+   echo 'export PATH=$PATH:PATH_TO_YOUR_ANDROID_SDK/Android_SDK_Platform_Tools/platform-tools/' >> ~/.bashrc
    source ~/.bashrc
    ```
    
-   **Note:** Adjust the path according to your actual installation directory.
-
 3. **Connect Quest 3 to Computer**
    
    - Connect your Quest 3 to the computer using a USB-C cable
