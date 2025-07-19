@@ -42,10 +42,31 @@ The operating system requirement is **Ubuntu 20.04** or higher. This project has
 **Prerequisites:**
 - NVIDIA GPU with CUDA support (required for Isaac Gym)
 - CUDA toolkit (compatible with your GPU driver)
+- Conda/Miniconda installed
+- Isaac Gym downloaded from NVIDIA (requires registration)
 
-### Setup Instructions
+### Quick Installation (Recommended)
 
-1. **Install OpenTeleVision Environment**
+This repository provides a one-click installation script that automates the entire setup process:
+
+```bash
+# Make the script executable
+chmod +x quick_install.sh
+
+# Run the installation script
+./quick_install.sh
+```
+
+The script will automatically:
+- Create a conda environment named 'teleop' with Python 3.8
+- Install Isaac Gym from the `issac_gym_python` directory
+- Install all required dependencies from `requirements.txt`
+
+### Manual Installation
+
+If you prefer to install manually or encounter issues with the quick install script:
+
+1. **Create conda enviroment**
 
    Create a new conda environment with Python 3.8:
    ```bash
@@ -53,24 +74,29 @@ The operating system requirement is **Ubuntu 20.04** or higher. This project has
    conda activate teleop
    ```
 
-   Install the required dependencies:
-   ```bash
-   pip install -r requirements.txt
-   ```
-
 2. **Install Isaac Gym**
    
    Download and install Isaac Gym from NVIDIA:
    - Visit: https://developer.nvidia.com/isaac-gym/
    - Register and download the Isaac Gym Preview package
-   - Follow the installation instructions in the Isaac Gym documentation
+   - Extract to your project directory and install:
+   ```bash
+   cd issac_gym_python
+   pip install -e .
+   cd ../
+   ```
+
+3. **Install Project Dependencies**
    
-   **Note:** Isaac Gym requires a compatible NVIDIA GPU and proper CUDA installation.
+   Install all required dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
 
 ### Important Notes
 
-- The **numpy** version required by **dex-retargeting-0.4.6** may have compatibility considerations with **Pinocchio**. If you encounter version conflicts, the project has been tested with **numpy>=1.24.4**.
-- Ensure your NVIDIA drivers are up to date and compatible with your CUDA installation before installing Isaac Gym.
+- **Dependency Conflicts**: During installation, you may encounter some pip dependency conflicts or warnings. Most of these conflicts do not affect the functionality of the system and can be safely ignored.
+- **NVIDIA Drivers**: Ensure your NVIDIA drivers are up to date and compatible with your CUDA installation before installing Isaac Gym.
 
 ## :computer:Usage
 
