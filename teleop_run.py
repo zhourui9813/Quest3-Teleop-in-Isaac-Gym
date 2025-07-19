@@ -156,7 +156,7 @@ def main(isaac_output,
     # urdf file used in pinocchi
     franka_pin = pinocchio.RobotWrapper.BuildFromURDF(
         filename=robot_ik_urdf,
-        package_dirs=["/opt/ros/noetic/share/"],
+        package_dirs=["assets"],
         root_joint=None,
     )
     print(f"URDF description successfully loaded in {franka_pin}")

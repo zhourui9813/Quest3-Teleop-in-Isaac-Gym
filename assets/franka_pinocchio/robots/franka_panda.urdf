@@ -8,24 +8,24 @@
   <link name="panda_link0">
     <visual>
       <geometry>
-        <mesh filename="file:///home/zhourui/Desktop/user/project/TeleVision/assets/franka_pinocchio/meshes/visual/link0.dae"/>
+        <mesh filename="package://franka_pinocchio/meshes/visual/link0.dae"/>
       </geometry>
     </visual>
     <collision>
       <geometry>
-        <mesh filename="file:///home/zhourui/Desktop/user/project/TeleVision/assets/franka_pinocchio/meshes/collision/link0.obj"/>
+        <mesh filename="package://franka_pinocchio/meshes/collision/link0.obj"/>
       </geometry>
     </collision>
   </link>
   <link name="panda_link1">
     <visual>
       <geometry>
-        <mesh filename="file:///home/zhourui/Desktop/user/project/TeleVision/assets/franka_pinocchio/meshes/visual/link1.dae"/>
+        <mesh filename="package://franka_pinocchio/meshes/visual/link1.dae"/>
       </geometry>
     </visual>
     <collision>
       <geometry>
-        <mesh filename="file:///home/zhourui/Desktop/user/project/TeleVision/assets/franka_pinocchio/meshes/collision/link1.obj"/>
+        <mesh filename="package://franka_pinocchio/meshes/collision/link1.obj"/>
       </geometry>
     </collision>
   </link>
@@ -41,12 +41,12 @@
   <link name="panda_link2">
     <visual>
       <geometry>
-        <mesh filename="file:///home/zhourui/Desktop/user/project/TeleVision/assets/franka_pinocchio/meshes/visual/link2.dae"/>
+        <mesh filename="package://franka_pinocchio/meshes/visual/link2.dae"/>
       </geometry>
     </visual>
     <collision>
       <geometry>
-        <mesh filename="file:///home/zhourui/Desktop/user/project/TeleVision/assets/franka_pinocchio/meshes/collision/link2.obj"/>
+        <mesh filename="package://franka_pinocchio/meshes/collision/link2.obj"/>
       </geometry>
     </collision>
   </link>
@@ -62,12 +62,12 @@
   <link name="panda_link3">
     <visual>
       <geometry>
-        <mesh filename="file:///home/zhourui/Desktop/user/project/TeleVision/assets/franka_pinocchio/meshes/visual/link3.dae"/>
+        <mesh filename="package://franka_pinocchio/meshes/visual/link3.dae"/>
       </geometry>
     </visual>
     <collision>
       <geometry>
-        <mesh filename="file:///home/zhourui/Desktop/user/project/TeleVision/assets/franka_pinocchio/meshes/collision/link3.obj"/>
+        <mesh filename="package://franka_pinocchio/meshes/collision/link3.obj"/>
       </geometry>
     </collision>
   </link>
@@ -83,12 +83,12 @@
   <link name="panda_link4">
     <visual>
       <geometry>
-        <mesh filename="file:///home/zhourui/Desktop/user/project/TeleVision/assets/franka_pinocchio/meshes/visual/link4.dae"/>
+        <mesh filename="package://franka_pinocchio/meshes/visual/link4.dae"/>
       </geometry>
     </visual>
     <collision>
       <geometry>
-        <mesh filename="file:///home/zhourui/Desktop/user/project/TeleVision/assets/franka_pinocchio/meshes/collision/link4.obj"/>
+        <mesh filename="package://franka_pinocchio/meshes/collision/link4.obj"/>
       </geometry>
     </collision>
   </link>
@@ -107,12 +107,12 @@
   <link name="panda_link5">
     <visual>
       <geometry>
-        <mesh filename="file:///home/zhourui/Desktop/user/project/TeleVision/assets/franka_pinocchio/meshes/visual/link5.dae"/>
+        <mesh filename="package://franka_pinocchio/meshes/visual/link5.dae"/>
       </geometry>
     </visual>
     <collision>
       <geometry>
-        <mesh filename="file:///home/zhourui/Desktop/user/project/TeleVision/assets/franka_pinocchio/meshes/collision/link5.obj"/>
+        <mesh filename="package://franka_pinocchio/meshes/collision/link5.obj"/>
       </geometry>
     </collision>
   </link>
@@ -128,12 +128,12 @@
   <link name="panda_link6">
     <visual>
       <geometry>
-        <mesh filename="file:///home/zhourui/Desktop/user/project/TeleVision/assets/franka_pinocchio/meshes/visual/link6.dae"/>
+        <mesh filename="package://franka_pinocchio/meshes/visual/link6.dae"/>
       </geometry>
     </visual>
     <collision>
       <geometry>
-        <mesh filename="file:///home/zhourui/Desktop/user/project/TeleVision/assets/franka_pinocchio/meshes/collision/link6.obj"/>
+        <mesh filename="package://franka_pinocchio/meshes/collision/link6.obj"/>
       </geometry>
     </collision>
   </link>
@@ -151,12 +151,12 @@
   <link name="panda_link7">
     <visual>
       <geometry>
-        <mesh filename="file:///home/zhourui/Desktop/user/project/TeleVision/assets/franka_pinocchio/meshes/visual/link7.dae"/>
+        <mesh filename="package://franka_pinocchio/meshes/visual/link7.dae"/>
       </geometry>
     </visual>
     <collision>
       <geometry>
-        <mesh filename="file:///home/zhourui/Desktop/user/project/TeleVision/assets/franka_pinocchio/meshes/collision/link7.obj"/>
+        <mesh filename="package://franka_pinocchio/meshes/collision/link7.obj"/>
       </geometry>
     </collision>
   </link>
@@ -173,12 +173,12 @@
   <link name="wrist_connnect">
     <visual>
       <geometry>
-        <mesh filename="file:///home/zhourui/Desktop/user/project/dex-mimic/assets/franka_pinocchio/meshes/visual/wrist_connect5.STL"/>
+        <mesh filename="package://franka_pinocchio/meshes/visual/wrist_connect5.STL"/>
       </geometry>
     </visual>
     <collision>
       <geometry>
-        <mesh filename="file:///home/zhourui/Desktop/user/project/dex-mimic/assets/franka_pinocchio/meshes/visual/wrist_connect5.STL"/>
+        <mesh filename="package://franka_pinocchio/meshes/visual/wrist_connect5.STL"/>
       </geometry>
     </collision>
   </link>
@@ -220,7 +220,7 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="file:///home/zhourui/Desktop/user/project/dex-mimic/assets/franka_pinocchio/robots/meshes/right_base_link.glb"/>
+        <mesh filename="package://franka_pinocchio/robots/meshes/right_base_link.glb"/>
       </geometry>
     </visual>
     <collision>
