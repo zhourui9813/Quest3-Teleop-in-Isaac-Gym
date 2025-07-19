@@ -5,7 +5,7 @@ from vuer.schemas import ImageBackground, group, Hands, WebRTCStereoVideoPlane, 
 from multiprocessing import Array, Process, shared_memory, Queue, Manager, Event, Semaphore
 import numpy as np
 import asyncio
-from webrtc.zed_server import *
+from teleop.webrtc.zed_server import *
 
 
 class OpenTeleVision:

@@ -169,11 +169,109 @@
     <dynamics damping="10.0"/>
     <limit effort="87" lower="-2.8973" upper="2.8973" velocity="2.1750"/>
   </joint>
+  
+  <link name="wrist_connnect">
+    <visual>
+      <geometry>
+        <mesh filename="file:///home/zhourui/Desktop/user/project/dex-mimic/assets/franka_pinocchio/meshes/visual/wrist_connect5.STL"/>
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="file:///home/zhourui/Desktop/user/project/dex-mimic/assets/franka_pinocchio/meshes/visual/wrist_connect5.STL"/>
+      </geometry>
+    </collision>
+  </link>
 
 
 
+  <joint name="arm_wrist_joint" type="fixed">
+    <!--
+    <parent link="panda_link8"/>
+    -->
+    <parent link="panda_link7"/>
+    <child link="wrist_connnect"/>
+    <!-- <origin rpy="-1.5707963 0 -0.785398163397" xyz="0 0 0.107"/> -->
+    <origin rpy="-1.5707963 0 -1.5707963267948966" xyz="0 0 0.116"/>
+    <!--
+    <origin rpy="0 0 -0.785398163397" xyz="0 0 0"/>
+    -->
+  </joint>
 
+    <joint name="wrist_hand_joint" type="fixed">
+    <!--
+    <parent link="panda_link8"/>
+    -->
+    <parent link="wrist_connnect"/>
+    <child link="hand_base_link"/>
+    <!-- <origin rpy="-1.5707963 0 -0.785398163397" xyz="0 0 0.107"/> -->
+    <origin rpy="-1.5707963 0 1.5707963267948966" xyz="0 -0.02696 0.0447"/>
+    <!--
+    <origin rpy="0 0 -0.785398163397" xyz="0 0 0"/>
+    -->
+  </joint>
 
+  <link name="hand_base_link">
+    <inertial>
+      <origin xyz="-0.0025264 -0.066047 0.0019598" rpy="0 0 0"/>
+      <mass value="0.14143"/>
+      <inertia ixx="0.00012281" ixy="2.1711E-06" ixz="1.7709E-06" iyy="8.3832E-05" iyz="-1.6551E-06" izz="7.6663E-05"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="file:///home/zhourui/Desktop/user/project/dex-mimic/assets/franka_pinocchio/robots/meshes/right_base_link.glb"/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0 -0.0136 0" rpy="1.57079 0 0"/>
+      <geometry>
+        <cylinder length="0.0278" radius="0.028"/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin xyz="-0.0032 -0.038 0" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.0391 0.0202 0.0574"/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin xyz="-0.0032 -0.0682 0" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.0391 0.04 0.0814"/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin xyz="0 -0.1081 0" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.0322 0.04 0.0814"/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin xyz="-0.0016 -0.1340 0.0309" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.0125 0.0111 0.0089"/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin xyz="-0.0016 -0.1340 0.0118" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.0125 0.0111 0.0089"/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin xyz="-0.0016 -0.1340 -0.0070" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.0125 0.0111 0.0089"/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin xyz="-0.0016 -0.1340 -0.0262" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.0125 0.0111 0.0089"/>
+      </geometry>
+    </collision>
+  </link>
 
 </robot>
 

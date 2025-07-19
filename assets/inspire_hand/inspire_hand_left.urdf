@@ -86,8 +86,8 @@
       <axis
         xyz="0 0 1" />
       <limit
-        lower="0.3367"
-        upper="1.4990"
+        lower="-0.1"
+        upper="1.3"
         effort="1"
         velocity="0.5" />
     </joint>
@@ -142,7 +142,7 @@
         xyz="0 0 -1" />
       <limit
         lower="0.0"
-        upper="0.4712"
+        upper="0.5"
         effort="1"
         velocity="0.5" />
     </joint>
@@ -200,9 +200,9 @@
         upper="0.8"
         effort="1"
         velocity="0.5" />
-      <mimic
+      <mimic 
         joint="L_thumb_proximal_pitch_joint"
-        multiplier="1.334"
+        multiplier="1.6"
         offset="0" />
     </joint>
 
@@ -261,7 +261,7 @@
         velocity="0.5" />
       <mimic 
         joint="L_thumb_proximal_pitch_joint"
-        multiplier="0.667"
+        multiplier="2.4"
         offset="0" />
     </joint>
 
@@ -333,8 +333,8 @@
       <axis
         xyz="0 0 -1" />
       <limit
-        lower="0.3377"
-        upper="1.6467"
+        lower="0"
+        upper="1.7"
         effort="1"
         velocity="0.5" />
     </joint>
@@ -394,8 +394,8 @@
         velocity="0.5" />
       <mimic 
         joint="L_index_proximal_joint"
-        multiplier="1.117"
-        offset="-0.187" />
+        multiplier="1"
+        offset="0" />
     </joint>
 
     <link name="L_index_tip">
@@ -466,8 +466,8 @@
       <axis
         xyz="0 0 -1" />
       <limit
-        lower="0.3377"
-        upper="1.6467"
+        lower="0"
+        upper="1.7"
         effort="1"
         velocity="0.5" />
     </joint>
@@ -527,8 +527,8 @@
         velocity="0.5" />
       <mimic 
         joint="L_middle_proximal_joint"
-        multiplier="1.117"
-        offset="-0.187" />
+        multiplier="1"
+        offset="0" />
     </joint>
 
     <link name="L_middle_tip">
@@ -599,8 +599,8 @@
       <axis
         xyz="0 0 -1" />
       <limit
-        lower="0.3377"
-        upper="1.6467"
+        lower="0"
+        upper="1.7"
         effort="1"
         velocity="0.5" />
     </joint>
@@ -660,8 +660,8 @@
         velocity="0.5" />
       <mimic 
         joint="L_ring_proximal_joint"
-        multiplier="1.117"
-        offset="-0.187" />
+        multiplier="1"
+        offset="0" />
     </joint>
 
     <link name="L_ring_tip">
@@ -732,8 +732,8 @@
       <axis
         xyz="0 0 -1" />
       <limit
-        lower="0.3377"
-        upper="1.6467"
+        lower="0"
+        upper="1.7"
         effort="1"
         velocity="0.5" />
     </joint>
@@ -793,8 +793,8 @@
         velocity="0.5" />
       <mimic 
         joint="L_pinky_proximal_joint"
-        multiplier="1.117"
-        offset="-0.187" />
+        multiplier="1"
+        offset="0" />
     </joint>
 
     <link name="L_pinky_tip">

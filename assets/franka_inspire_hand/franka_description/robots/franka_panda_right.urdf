@@ -43,7 +43,7 @@
     <child link="panda_link1"/>
     <axis xyz="0 0 1"/>
     <dynamics damping="10.0"/>
-    <limit effort="87" lower="-2.8973" upper="2.8973" velocity="2.1750"/>
+    <limit effort="87" lower="-2.7437" upper="2.7437" velocity="2.62"/>
   </joint>
   <link name="panda_link2">
     <visual>
@@ -67,7 +67,7 @@
     <child link="panda_link2"/>
     <axis xyz="0 0 1"/>
     <dynamics damping="10.0"/>
-    <limit effort="87" lower="-1.7628" upper="1.7628" velocity="2.1750"/>
+    <limit effort="87" lower="-1.7837" upper="1.7837" velocity="2.62"/>
   </joint>
   <link name="panda_link3">
     <visual>
@@ -91,7 +91,7 @@
     <child link="panda_link3"/>
     <axis xyz="0 0 1"/>
     <dynamics damping="10.0"/>
-    <limit effort="87" lower="-2.8973" upper="2.8973" velocity="2.1750"/>
+    <limit effort="87" lower="-2.9007" upper="2.9007" velocity="2.62"/>
   </joint>
   <link name="panda_link4">
     <visual>
@@ -115,7 +115,7 @@
     <child link="panda_link4"/>
     <axis xyz="0 0 1"/>    
     <dynamics damping="10.0"/>
-    <limit effort="87" lower="-3.0718" upper="-0.0698" velocity="2.1750"/>
+    <limit effort="87" lower="-3.0421" upper="-0.1518" velocity="2.62"/>
     <!-- something is weird with this joint limit config
     <dynamics damping="10.0"/>
     <limit effort="87" lower="-3.0" upper="0.087" velocity="2.1750"/>  -->
@@ -142,7 +142,7 @@
     <child link="panda_link5"/>
     <axis xyz="0 0 1"/>
     <dynamics damping="10.0"/>
-    <limit effort="12" lower="-2.8973" upper="2.8973" velocity="2.6100"/>
+    <limit effort="12" lower="-2.8065" upper="2.8065" velocity="5.26"/>
   </joint>
   <link name="panda_link6">
     <visual>
@@ -166,7 +166,7 @@
     <child link="panda_link6"/>
     <axis xyz="0 0 1"/>
     <dynamics damping="10.0"/>
-    <limit effort="12" lower="-0.0175" upper="3.7525" velocity="2.6100"/>
+    <limit effort="12" lower="0.5445" upper="4.5169" velocity="4.18"/>
     <!-- <dynamics damping="10.0"/>
     <limit effort="12" lower="-0.0873" upper="3.0" velocity="2.6100"/> -->
   </joint>
@@ -192,7 +192,7 @@
     <child link="panda_link7"/>
     <axis xyz="0 0 1"/>
     <dynamics damping="10.0"/>
-    <limit effort="12" lower="-2.8973" upper="2.8973" velocity="2.6100"/>
+    <limit effort="12" lower="-3.0159" upper="3.0159" velocity="5.26"/>
   </joint>
   <!--
   <link name="panda_link8"/>
@@ -204,13 +204,45 @@
   </joint>
   Removing this joint seems to help with some stability things
   -->
-  <joint name="panda_hand_joint" type="fixed">
+
+
+    <link name="wrist_connnect">
+    <visual>
+      <geometry>
+        <mesh filename="package://franka_description/meshes/visual/wrist_connect5.STL"/>
+      </geometry>
+      <material name="black">
+        <color rgba="0.1 0.1 0.1 1" />
+      </material>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="package://franka_description/meshes/collision/wrist_connect5.STL"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="arm_wrist_joint" type="fixed">
     <!--
     <parent link="panda_link8"/>
     -->
     <parent link="panda_link7"/>
+    <child link="wrist_connnect"/>
+    <!-- <origin rpy="-1.5707963 0 -0.785398163397" xyz="0 0 0.107"/> -->
+    <origin rpy="-1.5707963 0 -1.5707963267948966" xyz="0 0 0.116"/>
+    <!--
+    <origin rpy="0 0 -0.785398163397" xyz="0 0 0"/>
+    -->
+  </joint>
+
+    <joint name="wrist_hand_joint" type="fixed">
+    <!--
+    <parent link="panda_link8"/>
+    -->
+    <parent link="wrist_connnect"/>
     <child link="hand_base_link"/>
-    <origin rpy="-1.5707963 0 -0.785398163397" xyz="0 0 0.107"/>
+    <!-- <origin rpy="-1.5707963 0 -0.785398163397" xyz="0 0 0.107"/> -->
+    <origin rpy="-1.5707963 0 1.5707963267948966" xyz="0 -0.02696 0.0447"/>
     <!--
     <origin rpy="0 0 -0.785398163397" xyz="0 0 0"/>
     -->

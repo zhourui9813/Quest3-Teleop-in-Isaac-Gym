@@ -1,8 +1,8 @@
 import math
 import numpy as np
 
-from constants_vuer import grd_yup2grd_zup, hand2inspire
-from motion_utils import mat_update, fast_mat_inv
+from teleop.constants_vuer import grd_yup2grd_zup, hand2inspire
+from teleop.motion_utils import mat_update, fast_mat_inv
 
 
 class VuerPreprocessor:
