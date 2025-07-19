@@ -17,14 +17,13 @@ This project enables immersive teleoperation of dual **Franka Panda robotic arms
 ### Key Features
 
 - **VR Teleoperation**: Use Meta Quest 3 for natural hand-based control of dual robotic arms
-- **Physics Simulation**: High-fidelity robotic simulation powered by NVIDIA Isaac Gym with PhysX
+- **Real-time Streaming**: Low-latency video streaming from simulation to VR headset
 - **Dual Arm Control**: Simultaneous control of left and right Franka Panda arms with Inspire Hands
 - **Advanced IK Solving**: Real-time inverse kinematics using Pink/Pinocchio libraries
 - **Hand Retargeting**: Accurate human-to-robot hand pose mapping using dex-retargeting
 - **Gesture Control**: Intuitive gesture-based commands for recording and visualization modes
 - **Multi-Modal Visualization**: RGB, depth, and segmentation mask display modes
 - **Episode Recording**: Gesture-controlled recording system for data collection
-- **Real-time Streaming**: Low-latency video streaming from simulation to VR headset
 
 ### Technical Architecture
 
@@ -38,7 +37,7 @@ This project enables immersive teleoperation of dual **Franka Panda robotic arms
 
 ### System Requirements
 
-The operating system requirement is **Ubuntu 20.04** or higher. This project has been developed and tested on **Ubuntu 20.04**, but should work on newer Ubuntu versions (22.04, 24.04) as well.
+The operating system requirement is **Ubuntu 20.04** or higher. This project has been developed and tested on **Ubuntu 20.04**, but should work on newer Ubuntu versions (22.04) as well.
 
 **Prerequisites:**
 - NVIDIA GPU with CUDA support (required for Isaac Gym)
@@ -161,14 +160,9 @@ For more control over the system, you have two options:
 ./run_teleop.sh
 ```
 The project includes a pre-configured `run_teleop.sh` script with optimized parameters. You can edit this script to customize the settings:
-```bash
-# Edit the script to modify parameters
-nano run_teleop.sh
-# Then run it
-./run_teleop.sh
-```
 
 **Option 2: Use command line options directly**
+
 ```bash
 python teleop_run.py \
     --isaac_output "output/my_session" \
@@ -211,12 +205,6 @@ The system provides three visualization modes:
 1. **RGB Mode**: Natural color view of the simulation
 2. **Depth Mode**: Colored depth maps showing distance information
 3. **Segmentation Mode**: Color-coded object and robot part identification
-
-Each mode displays:
-- Current visualization mode status
-- Recording status (RECORDING/NOT RECORDING)
-- Current episode number
-- Real-time hand tracking and robot control feedback
 
 #### Episode Recording
 
