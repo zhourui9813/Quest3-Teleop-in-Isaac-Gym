@@ -4,7 +4,15 @@
 
 This project enables immersive teleoperation of dual **Franka Panda robotic arms** equipped with **Inspire Hands** using **Meta Quest 3** in a **NVIDIA Isaac Gym** physics simulation environment. The system provides real-time bilateral control with advanced hand gesture recognition and multi-modal visual feedback.
 
-![Demo](repo_assets/demo.gif)
+<p align="center">
+  <img
+    src="repo_assets/demo.webp"
+    controls
+    muted
+    style="max-width: 100%; height: auto;">
+  </video>
+</p>
+
 
 ### Key Features
 
