@@ -1,4 +1,4 @@
-# isaac gym库存在问题，一定要先import pinocchio再import isaacgym
+# Isaac Gym has issues, must import pinocchio before isaacgym
 import pinocchio
 import os
 import pink
@@ -43,9 +43,9 @@ sys.path.append(ROOT_DIR)
 
 def draw_image_caption(color_img_left, color_img_right, text, position,
                        fontFace=cv2.FONT_HERSHEY_SIMPLEX, fontScale=1.0, lineType=cv2.LINE_AA, thickness=2, color=(0,0,0)):
-    # 确保图像是可写的numpy数组且数据类型正确
+    # Ensure the image is a writable numpy array with correct data type
     if color_img_left is not None:
-        # 转换为连续内存布局的numpy数组
+        # Convert to contiguous memory layout numpy array
         img_left = np.ascontiguousarray(color_img_left.astype(np.uint8))
         cv2.putText(img_left, text, position,
                     fontFace=fontFace,
@@ -53,11 +53,11 @@ def draw_image_caption(color_img_left, color_img_right, text, position,
                     lineType=lineType,
                     thickness=thickness,
                     color=color)
-        # 将修改后的数据复制回原图像
+        # Copy modified data back to original image
         np.copyto(color_img_left, img_left)
 
     if color_img_right is not None:
-        # 转换为连续内存布局的numpy数组
+        # Convert to contiguous memory layout numpy array
         img_right = np.ascontiguousarray(color_img_right.astype(np.uint8))
         cv2.putText(img_right, text, position,
                     fontFace=fontFace,
@@ -65,17 +65,17 @@ def draw_image_caption(color_img_left, color_img_right, text, position,
                     lineType=lineType,
                     thickness=thickness,
                     color=color)
-        # 将修改后的数据复制回原图像
+        # Copy modified data back to original image
         np.copyto(color_img_right, img_right)
 
 def start_episode_recording(session_output_dir, episode_num):
-    """开始新的episode录制"""
+    """Start new episode recording"""
     episode_dir = os.path.join(session_output_dir, f"episode{episode_num}")
     
-    # 创建episode目录
+    # Create episode directory
     os.makedirs(episode_dir, exist_ok=True)
     
-    # 创建子目录
+    # Create subdirectories
     rgb_dir = os.path.join(episode_dir, "RGB")
     depth_dir = os.path.join(episode_dir, "Depth")
     segment_dir = os.path.join(episode_dir, "Segment")
@@ -84,7 +84,7 @@ def start_episode_recording(session_output_dir, episode_num):
     os.makedirs(depth_dir, exist_ok=True)
     os.makedirs(segment_dir, exist_ok=True)
     
-    # 创建视频写入器
+    # Create video writers
     writers = {
         'left_rgb': cv2.VideoWriter(os.path.join(rgb_dir, "left_rgb.mp4"), 
                                    cv2.VideoWriter_fourcc(*'mp4v'), 30.0, (1280, 720)),
@@ -104,7 +104,7 @@ def start_episode_recording(session_output_dir, episode_num):
     return writers, episode_dir
 
 def stop_episode_recording(writers, episode_dir):
-    """停止当前episode录制"""
+    """Stop current episode recording"""
     if writers:
         for writer in writers.values():
             writer.release()
@@ -113,18 +113,18 @@ def stop_episode_recording(writers, episode_dir):
 
 def set_seg_color_map(max_idx):
     seg_color_list = []
-    # 为每个分割 ID 设置对应颜色
+    # Set corresponding colors for each segmentation ID
     for i in range(max_idx + 1):
         if i == 1:
-            color = [0, 0, 255]  # 设置 ID 1 的颜色
+            color = [0, 0, 255]  # Set color for ID 1
         elif i == 2:
-            color = [98, 193, 66]  # 设置 ID 2 的颜色
+            color = [98, 193, 66]  # Set color for ID 2
         elif i == 3:
-            color = [0, 255, 0]  # 设置 ID 3 的颜色
+            color = [0, 255, 0]  # Set color for ID 3
         elif i == 4:
-            color = [0, 255, 255]  # 设置 ID 4 的颜色
+            color = [0, 255, 255]  # Set color for ID 4
         else:
-            color = [0, 0, 0]  # 设置其他 ID 的默认颜色，这里假设其他 ID 映射到黑色
+            color = [0, 0, 0]  # Set default color for other IDs, assuming other IDs map to black
 
         seg_color_list.append(color)
     return np.array(seg_color_list)
@@ -291,7 +291,7 @@ def main(isaac_output,
         if is_recording and current_episode_writers:
             current_episode_writers, current_episode_dir = stop_episode_recording(current_episode_writers, current_episode_dir)
         
-        # 清理pygame资源
+        # Clean up pygame resources
         if pygame_display:
             pygame_display.cleanup()
         

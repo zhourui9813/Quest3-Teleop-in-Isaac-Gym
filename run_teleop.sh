@@ -58,7 +58,7 @@ echo "  Exit: Ctrl+C"
 # Launch the program
 echo "Starting teleop system..."
 
-# 5秒倒计时
+# 5 second countdown
 echo -e "${YELLOW}Start in 5 sec...${NC}"
 for i in {5..1}; do
     echo -n "$i "

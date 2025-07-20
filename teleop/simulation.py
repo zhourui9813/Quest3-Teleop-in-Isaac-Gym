@@ -1,4 +1,4 @@
-# isaac gym库存在问题，一定要先import pinocchio再import isaacgym
+# Isaac gym library has issues, must import pinocchio before isaacgym
 import pinocchio
 import os
 import pink
@@ -14,14 +14,14 @@ import time
 
 
 
-# Franka 底座位置
+# Franka base position
 base_height = 0.9
 
 left_arm_base = gymapi.Transform()
 left_arm_base.p = gymapi.Vec3(-1, 0.25, base_height)
 left_arm_base.r = gymapi.Quat(0, 0, 0, 1)
 
-# 根据机械臂初始位姿获得机械臂坐标系相对于世界坐标系的变换矩阵
+# Get the transformation matrix of the robot arm coordinate system relative to the world coordinate system based on the initial pose of the robot arm
 left_base2world = gympose2matrix(left_arm_base)
 
 right_arm_base = gymapi.Transform()
@@ -30,7 +30,7 @@ right_arm_base.r = gymapi.Quat(0, 0, 0, 1)
 
 right_base2world = gympose2matrix(right_arm_base)
 
-# 输入末端工具的目标姿态以及初始姿态，迭代计算IK
+# Input the target pose and initial pose of the end-effector, iteratively calculate IK
 def pink_solve_ik(target_pose,
                   robot,
                   frame_name,
@@ -39,7 +39,7 @@ def pink_solve_ik(target_pose,
                   max_iterate_step,
                   initial_joint_state=None,
                   verbose=False):
-    # 若没有定义初始状态 则使用关节中间位置作为初始状态计算
+    # If no initial state is defined, use the middle position of joints as the initial state for calculation
     low = robot.model.lowerPositionLimit
     high = robot.model.upperPositionLimit
     if initial_joint_state is None:
@@ -143,11 +143,11 @@ class Sim:
         num_per_row = int(math.sqrt(num_envs))
         env_spacing = 1.25
 
-        # env_lower 和 env_upper 表示你要创建的环境在坐标系中的“最小点”和“最大点”
+        # env_lower and env_upper represent the "minimum point" and "maximum point" of the environment you want to create in the coordinate system
         env_lower = gymapi.Vec3(-env_spacing, 0.0, -env_spacing)
         env_upper = gymapi.Vec3(env_spacing, env_spacing, env_spacing)
         np.random.seed(0)
-        # 这里调用 Isaac Gym 的 create_env，在物理仿真 sim 中，创建一个环境
+        # Here we call Isaac Gym's create_env to create an environment in the physics simulation sim
         self.env = self.gym.create_env(self.sim, env_lower, env_upper, num_per_row)
 
         # table
@@ -159,10 +159,10 @@ class Sim:
         self.gym.set_rigid_body_color(self.env, table_handle, 0, gymapi.MESH_VISUAL_AND_COLLISION, color)
 
         # cube
-        pose = gymapi.Transform()  # 在 Isaac Gym 中，gymapi.Transform() 用于构造一个“位姿”对象（3D 平移 + 旋转）
+        pose = gymapi.Transform()  # In Isaac Gym, gymapi.Transform() is used to construct a "pose" object (3D translation + rotation)
         pose.p = gymapi.Vec3(-0.4, 0, base_height + 0.5)
         pose.r = gymapi.Quat(0, 0, 0, 1)
-        # actor是GymAsset的实例。函数create_actor将一个参与者添加到环境中，并返回一个参与者句柄，该句柄可用于以后与该参与者交互
+        # actor is an instance of GymAsset. The create_actor function adds an actor to the environment and returns an actor handle, which can be used for later interaction with that actor
         cube_handle = self.gym.create_actor(self.env, cube_asset, pose, 'cube', -1)
         cube_shape = self.gym.get_actor_rigid_shape_properties(self.env, cube_handle)
         for s in cube_shape:
@@ -171,14 +171,14 @@ class Sim:
         color = gymapi.Vec3(1, 0.5, 0.5)
         self.gym.set_rigid_body_color(self.env, cube_handle, 0, gymapi.MESH_VISUAL_AND_COLLISION, color)
 
-        # 定义urdf文件路径
+        # Define URDF file path
         asset_root = assets_path
         right_arm_asset_path = "franka_inspire_hand/franka_description/robots/franka_panda_right.urdf"
         left_arm_asset_path = "franka_inspire_hand/franka_description/robots/franka_panda_left.urdf"
         asset_options = gymapi.AssetOptions()
         asset_options.fix_base_link = True
         asset_options.disable_gravity = True
-        asset_options.default_dof_drive_mode = gymapi.DOF_MODE_POS  # 所有关节都使用位置控制模式
+        asset_options.default_dof_drive_mode = gymapi.DOF_MODE_POS  # All joints use position control mode
         right_arm_asset = self.gym.load_asset(self.sim, asset_root, right_arm_asset_path, asset_options)
         left_arm_asset = self.gym.load_asset(self.sim, asset_root, left_arm_asset_path, asset_options)
 
@@ -269,11 +269,11 @@ class Sim:
                                      gymapi.Vec3(*(self.cam_pos + self.right_cam_offset + self.cam_lookat_offset)))
 
     def set_seg_id(self, actor_handler, seg_id):
-        # 使用gym.get_actor_rigid_body_count获取刚体数量
+        # Use gym.get_actor_rigid_body_count to get the number of rigid bodies
         rigid_body_count = self.gym.get_actor_rigid_body_count(self.env, actor_handler)
         print(f"Actor has {rigid_body_count} rigid bodies.")
 
-        # 遍历每个刚体并设置分割ID
+        # Iterate through each rigid body and set segmentation ID
         for i in range(rigid_body_count):
             self.gym.set_rigid_body_segmentation_id(self.env, actor_handler, i, seg_id)
 
@@ -285,18 +285,18 @@ class Sim:
         img[abs(img) < abs(min_depth)] = min_depth
         normalized_depth_image = (min_depth - img) / (min_depth - max_depth) * 255
 
-        # 转换为 uint8 类型
+        # Convert to uint8 type
         normalized_depth_image = normalized_depth_image.astype(np.uint8)
         return normalized_depth_image
 
     def depth_img_to_color(self, depth_img):
-        # 先进行深度图归一化
+        # First perform depth image normalization
         normalized_depth = self.depth_img_normalize(depth_img)
 
-        # 使用cv2的颜色映射将灰度深度图转换为彩色图
+        # Use cv2's color mapping to convert grayscale depth image to color image
         colored_depth = cv2.applyColorMap(normalized_depth, cv2.COLORMAP_JET)
 
-        # 转换BGR到RGB
+        # Convert BGR to RGB
         colored_depth = cv2.cvtColor(colored_depth, cv2.COLOR_BGR2RGB)
 
         return colored_depth
@@ -309,13 +309,13 @@ class Sim:
         # head_rmat = R.from_rotvec(head_pose[3:]).as_matrix()
         # self.cam_pos = head_pose
 
-        # 获取hand相对于franka底座的相对姿态
-        # 注意：这里的left_arm_pose和right_arm_pose是从teleoperator传来的手部姿态
-        # 需要使用全局的arm pose作为底座姿态
+        # Get hand pose relative to franka base
+        # Note: here left_arm_pose and right_arm_pose are hand poses from teleoperator
+        # Need to use global arm pose as base pose
         left_relative_pose = get_relative_hand_pose(left_arm_pose, left_arm_base)
         right_relative_pose = get_relative_hand_pose(right_arm_pose, right_arm_base)
 
-        # 在pinocchio中计算左臂末端link位姿
+        # Calculate left arm end-effector link pose in pinocchio
         if self.previous_left_joint_position is None:
             current_left_joint_position, left_eef_relative_pose = pink_solve_ik(target_pose=left_relative_pose,
                                                                                 robot=self.robot_pin,
@@ -336,7 +336,7 @@ class Sim:
                                                                                                     :7]
                                                                                 )
 
-        # 在pinocchio中计算右臂末端link位姿
+        # Calculate right arm end-effector link pose in pinocchio
         if self.previous_right_joint_position is None:
             current_right_joint_position, right_eef_relative_pose = pink_solve_ik(target_pose=right_relative_pose,
                                                                                   robot=self.robot_pin,

@@ -246,11 +246,11 @@ if __name__ == "__main__":
     shm_name = shm.name
     img_array = np.ndarray((img_shape[0], img_shape[1], 3), dtype=np.uint8, buffer=shm.buf)
 
-    # 原始代码
+    # Original code
     # tv = OpenTeleVision(resolution_cropped, cert_file="../cert.pem", key_file="../key.pem")
-    # 修改参数之后，local streaming
+    # Modified parameters for local streaming
     # tv = OpenTeleVision(resolution_cropped, shm_name, 0, 0, cert_file=None, key_file=None)
-    # 修改参数之后，local streaming
+    # Modified parameters for local streaming
     tv = OpenTeleVision(resolution_cropped, shm_name, img_array, 0, cert_file=None, key_file=None, ngrok=True)
     while True:
         # print(tv.left_landmarks)
