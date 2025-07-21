@@ -136,7 +136,7 @@ def set_seg_color_map(max_idx):
 @click.option('--assets_path', '-a_p', default="assets/", required=True, help='Path to assets')
 @click.option('--init_mode', '-i_m', default="rgb", required=True, help='Initial visualization mode')
 @click.option('--vis_camera', '-v_c', default=False, required=True, help='Visualization on screen')
-@click.option('--vis_issac', '-v_i', default=False, required=True, help='Visualization on screen')
+@click.option('--vis_issac', '-v_i', default=True, required=True, help='Visualization on screen')
 @click.option('--ik_dt', default=1e-2, type=float, required=True)
 @click.option('--ik_thresh', default=1e-2, type=float, required=True)
 @click.option('--ik_max_iterate_step', default=100, type=int, required=True)
