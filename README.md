@@ -1,8 +1,10 @@
-# Quest3-Teleop-in-Isaac-Gym
+# DexTeleGym: immersive VR bimanual teleoperation in NVIDIA Isaac Gym 
+
+**Author:** [Rui Zhou](https://zhourui9813.github.io/)   **Links:** [GitHub Repo](https://github.com/zhourui9813/DexTeleGym) | [Contact](mailto:zhourui9813@gmail.com)
 
 # 📚Overview
 
-This project enables immersive teleoperation of dual **Franka Panda robotic arms** equipped with **Inspire Hands** using **Meta Quest 3** in a **NVIDIA Isaac Gym** physics simulation environment. The system provides real-time bilateral control with advanced hand gesture recognition and multi-modal visual feedback.
+**DexTeleGym** is an immersive VR bimanual teleoperation pipeline for **NVIDIA Isaac Gym**, enabling real-time control of dual **Franka Panda arms** equipped with **Dexterous Hands** using **Meta Quest 3**. It features low-latency WebRTC video streaming, robust hand tracking and gesture-based control, **multi-modal visual feedback (RGB/depth/segmentation)**, and episode recording for collecting high-quality teleoperation demonstrations and datasets for learning-based manipulation.
 
 <p align="center">
   <img
@@ -12,6 +14,7 @@ This project enables immersive teleoperation of dual **Franka Panda robotic arms
     style="max-width: 100%; height: auto;">
   </video>
 </p>
+
 
 
 ### Key Features
@@ -40,6 +43,7 @@ This project enables immersive teleoperation of dual **Franka Panda robotic arms
 The operating system requirement is **Ubuntu 20.04** or higher. This project has been developed and tested on **Ubuntu 20.04**, but should work on newer Ubuntu versions (22.04) as well.
 
 **Prerequisites:**
+
 - NVIDIA GPU with CUDA support (required for Isaac Gym)
 - CUDA toolkit (compatible with your GPU driver)
 - Conda/Miniconda installed
@@ -61,6 +65,7 @@ conda activate teleop
 ```
 
 The script will automatically:
+
 - Create a conda environment named 'teleop' with Python 3.8
 - Install Isaac Gym from the `issac_gym_python` directory
 - Install all required dependencies from `requirements.txt`
@@ -72,17 +77,20 @@ If you prefer to install manually or encounter issues with the quick install scr
 1. **Create conda enviroment**
 
    Create a new conda environment with Python 3.8:
+
    ```bash
    conda create -n teleop python=3.8
    conda activate teleop
    ```
 
 2. **Install Isaac Gym**
-   
+
    Download and install Isaac Gym from NVIDIA:
+
    - Visit: https://developer.nvidia.com/isaac-gym/
    - Register and download the Isaac Gym Preview package
    - Extract to your project directory and install:
+
    ```bash
    cd issac_gym_python
    pip install -e .
@@ -90,8 +98,9 @@ If you prefer to install manually or encounter issues with the quick install scr
    ```
 
 3. **Install Project Dependencies**
-   
+
    Install all required dependencies:
+
    ```bash
    pip install -r requirements.txt
    ```
@@ -106,6 +115,7 @@ If you prefer to install manually or encounter issues with the quick install scr
 ### Quest 3 Setup and Connection
 
 #### Prerequisites
+
 - Meta Quest 3 headset
 - USB-C cable (for connecting Quest 3 to computer)
 - Android SDK Platform Tools
@@ -113,49 +123,53 @@ If you prefer to install manually or encounter issues with the quick install scr
 #### Setup Steps
 
 1. **Install Android SDK Platform Tools**
-   
+
    Download and install the Android SDK Platform Tools:
+
    - Visit: https://developer.android.com/tools/releases/platform-tools
    - Download the appropriate package for Linux
    - Extract the package to your desired location (e.g., `~/Android_SDK_Platform_Tools/`)
 
 2. **Configure ADB Environment**
-   
+
    Add ADB tools to your system PATH by modifying `~/.bashrc`:
-   
+
    **Note:** Replace `PATH_TO_YOUR_ANDROID_SDK` with the actual installation directory of your Android SDK in following command .
-   
+
    ```bash
    echo 'export PATH=$PATH:PATH_TO_YOUR_ANDROID_SDK/Android_SDK_Platform_Tools/platform-tools/' >> ~/.bashrc
    source ~/.bashrc
    ```
-   
+
 3. **Connect Quest 3 to Computer**
-   
+
    - Connect your Quest 3 to the computer using a USB-C cable
    - Put on the Quest 3 headset
    - Accept the USB debugging permission prompt that appears in VR
-   
+
 4. **Verify Connection**
-   
+
    Test the connection by running:
+
    ```bash
    adb devices
    ```
-   
+
    You should see output similar to:
+
    ```
    List of devices attached
    1WMHH123456789  device
    ```
 
 5. **Set Up Port Forwarding**
-   
+
    Configure port forwarding for the teleoperation interface:
+
    ```bash
    adb reverse tcp:8012 tcp:8012
    ```
-   
+
    This allows the Quest 3 to access the teleoperation server running on your computer. 
 
 ### Teleoperation in Isaac Gym
@@ -163,20 +177,25 @@ If you prefer to install manually or encounter issues with the quick install scr
 #### Quick Start
 
 1. **Launch the Teleoperation System**
+
    ```bash
    python teleop_run.py
    ```
+
    This will start the Isaac Gym simulation with default parameters. You should see:
+
    - Isaac Gym simulation window displaying dual Franka Panda arms with Inspire Hands
    - A table with manipulatable objects in the scene
    - Console output showing successful URDF loading and physics initialization
 
 2. **Connect Quest 3 to VR Interface**
+
    - Put on your Quest 3 headset
    - Open the browser and navigate to `http://127.0.0.1:8012/`
    - Click **"Enter VR"** button to start the immersive teleoperation session
 
 3. **Start Teleoperation**
+
    - Your hand movements will be tracked and mapped to the robotic arms in real-time
    - Left hand controls the left Franka arm, right hand controls the right Franka arm
    - Hand gestures are automatically retargeted to the Inspire Hand finger movements
@@ -186,6 +205,7 @@ If you prefer to install manually or encounter issues with the quick install scr
 For more control over the system, you have two options:
 
 **Option 1: Use the provided bash script (Recommended)**
+
 ```bash
 # Make the script executable
 chmod +x quick_install.sh
@@ -193,6 +213,7 @@ chmod +x quick_install.sh
 # Run the teleop script
 ./run_teleop.sh
 ```
+
 The project includes a pre-configured `run_teleop.sh` script with optimized parameters. You can edit this script to customize the settings:
 
 **Option 2: Use command line options directly**
@@ -211,6 +232,7 @@ python teleop_run.py \
 ```
 
 **Parameter Descriptions:**
+
 - `--isaac_output`: Directory to save recorded episodes and videos
 - `--robot_ik_urdf`: Path to the robot URDF file for inverse kinematics
 - `--assets_path`: Root directory containing robot and hand assets
@@ -224,11 +246,13 @@ python teleop_run.py \
 #### Gesture Controls
 
 **Right Hand Gestures (Display Mode Control):**
+
 - 👍🏻 **Thumb + Index**: Switch to depth visualization mode
 - 👍🏻 **Thumb + Middle**: Switch to segmentation mask mode  
 - 👍🏻 **Thumb + Ring**: Switch to RGB color mode
 
 **Left Hand Gestures (Recording Control):**
+
 - 👍🏻 **Thumb + Index**: Start recording new episode
 - 👍🏻 **Thumb + Middle**: Stop current episode recording
 
@@ -247,6 +271,7 @@ The system provides three visualization modes:
 - Videos are saved at 30 FPS in MP4 format
 
 **Directory Structure:**
+
 ```
 output/
 └── 20250719_132924/              # Session timestamp
@@ -277,6 +302,7 @@ output/
 #### Troubleshooting
 
 **Common Issues:**
+
 - If Isaac Gym window doesn't appear, ensure you have proper GPU drivers and Isaac Gym installation
 - If Quest 3 connection fails, verify USB connection and run `adb devices` to confirm device recognition
 - If hand tracking is jittery, adjust IK parameters (`ik_dt`, `ik_thresh`) for smoother motion
@@ -285,6 +311,3 @@ output/
 ## 🙏 Acknowledgement
 
 We thank the authors of [OpenTeleVision](https://github.com/OpenTeleVision/TeleVision) for sharing their codebase, which provided the foundation for VR-based teleoperation in this project.
-
-
-
